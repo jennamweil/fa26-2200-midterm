@@ -137,7 +137,7 @@ h3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 35px;
-    padding 0;
+    padding: 0;
     list-style: none;
 }
 
