@@ -136,7 +136,7 @@ h3 {
 .card-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap 40px;
+    gap: 35px;
     padding 0;
     list-style: none;
 }
