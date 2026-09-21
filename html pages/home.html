@@ -5,67 +5,114 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BTU Lab | Home</title>
-    <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="../css pages/home.css">
 </head>
 
 <body>
     <header>
+        <nav aria-label="Main navigation">
+            <ul>
+               <li>
+                  <a href="home.html" aria-current="page">Home</a>
+               </li>
+  
+               <li class="dropdown">
+                   <a href="#">Make</a>
+                  <ul class="dropdown-menu">
+                      <li><a href="3d.html">3D Printers</a></li>
+                      <li><a href="cnc.html">CNC</a></li>
+                      <li><a href="electronics.html">Electronics</a></li>
+                      <li><a href="lasers.html">Lasers!</a></li>
+                      <li><a href="tools.html">Tools</a></li>
+                      <li><a href="sewing.html">Sewing & Textiles</a></li> 
+                      <li><a href="wood.html">Wood Shop</a></li> 
+                   </ul>
+               </li>
+  
+          <li class="dropdown">
+              <a href="#">Community</a>
+              <ul class="dropdown-menu">
+                  <li><a href="calendar.html">BTU Lab Calendar</a></li>
+                  <li><a href="join.html">Join Us</a></li>
+                  <li><a href="makers.html">BTU Mischief Makers</a></li>
+              </ul>
+          </li>
+  
+          <li class="dropdown">
+              <a href="#">Learn</a>
+              <ul class="dropdown-menu">
+                  <li><a href="faculty.html">Faculty</a></li>
+                  <li><a href="rules.html">Rules & Policies</a></li>
+                  <li><a href="workshop.html">Workshops</a></li>
+              </ul>
+          </li>
+      </ul>
+  </nav>
+
         <div class="hero-image">
-            <img src="colourful explosion.png" alt="colorful explosion">
+            <img src="../media/colourful explosion.png" alt="colorful explosion">
             <div class="hero-title">
                 <h1>BTU LAB</h1>
             </div>
         </div>
 
-        <nav aria-label="Main navigation">
-    <ul>
-        <li>
-            <a href="home.html" aria-current="Home">Home</a>
-        </li>
-
-        <li class="dropdown">
-            <a href="#">Make</a>
-            <ul class="dropdown-menu">
-                <li><a href="3d.html">3D Printers</a></li>
-                <li><a href="cnc.html">CNC</a></li>
-                <li><a href="electronics.html">Electronics</a></li>
-                 <li><a href="lasers.html">Lasers!</a></li>
-                <li><a href="tools.html">Tools</a></li>
-                 <li><a href="sewing.html">Sewing & Textiles</a></li> 
-                <li><a href="wood.html">Wood Shop</a></li> 
-            </ul>
-        </li>
-
-        <li class="dropdown">
-            <a href="#">Community</a>
-            <ul class="dropdown-menu">
-                <li><a href="calendar.html">BTU Lab Calendar</a></li>
-                <li><a href="join.html">Join Us</a></li>
-                <li><a href="makers.html">BTU Mischief Makers</a></li>
-            </ul>
-        </li>
-
-        <li class="dropdown">
-            <a href="#">Learn</a>
-            <ul class="dropdown-menu">
-                <li><a href="faculty.html">Faculty</a></li>
-                <li><a href="rules.html">Rules & Policies</a></li>
-                <li><a href="workshop.html">Workshops</a></li>
-            </ul>
-        </li>
-    </ul>
-</nav>
+        
     </header>
 
     <main>
         <section class="intro">
             <h2>Welcome to the BTU Lab!</h2>
 
-            <p>
-    
-            </p>
+            <p> The BTU Lab is an inclusive and eclectic community makerspace facilitating projects at the intersection of art, design, engineering and architecture, while supporting Creative Technology & Design academic programs. BTU is a general workspace open to all students at CU Boulder, offering access and training to a range of tools for 3D printing, woodworking, laser cutting, electronics prototyping, textiles/sewing and much more. </p>
         </section>
     </main>
+
+    <section class="esplore" aria-labelledby="explore-heading">
+        <h2 id="explore-heading">Explore the Lab</h2>
+
+        <ul class="card-grid">
+            <li>
+                <a class="lab-card" href="tools.html">General Tools</a>
+            </li>
+
+            <li>
+                <a class="lab-card" href="wood.html">Wood Shop</a>
+            </li>
+
+            <li> 
+                <a class="lab-card" href="sewing.html">
+                    Sewing &amp; Textiles
+                </a>
+            </li>
+
+            <li>
+                <a class="lab-card" href="electronics.html">Electronics</a>
+            </li>
+
+            <li>
+                <a class="lab-card" href="lasers.html">Laser Cutters</a>
+            </li>
+
+            <li>
+                <a class="lab-card" href="3d.html">3D Printers</a>
+            </li>
+            <li>
+                <a class="lab-card" href="cnc.html">CNC</a>
+            </li>
+        </ul>
+    </section>
+
+    <section class="calander-section">
+        <h2>BTU Lab Calender</h2>
+
+     <iframe
+        class="calendar"
+        src="https://calendar.google.com/calendar/embed?mode=month"
+        tittle="BTU Lab events">
+    </iframe>
+    
+
+    </section>
 
     <footer>
         <p>BTU Lab | CU Boulder</p>
