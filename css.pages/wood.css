@@ -1,3 +1,10 @@
+:root {
+    --grey: #e6e6e6;
+    --white: #ffffff;
+    --accent: #b3125a;       
+    --content-width: 900px;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -7,6 +14,7 @@
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
+    background-color: var(--white);
 }
 
 /* HERO IMAGE */
@@ -39,7 +47,7 @@ body {
 
 .hero-title h1 {
     margin: 0;
-    color: pink;
+    color: var(--accent);
     font-size: 5rem;
     letter-spacing: 0.1em;
     text-align: center;
@@ -51,7 +59,6 @@ nav {
     width: 100%;
     padding: 20px;
     background-color: white;
-    
 }
 
 nav > ul {
@@ -71,6 +78,19 @@ nav a {
 nav a:hover,
 nav a[aria-current="page"] {
     text-decoration: underline;
+}
+
+nav {
+    position: relative;
+}
+
+.nav-logo {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 50px;   /* adjust to taste */
+    width: auto;
 }
 
 /* DROPDOWN MENUS */
@@ -114,27 +134,172 @@ nav a[aria-current="page"] {
 
 /* MAIN CONTENT */
 
+/* main only wraps the intro, so its grey band runs edge to edge */
 main {
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 100%;
+    background-color: var(--grey);
 }
 
-section,
-aside {
-    padding: 60px 30px;
+/* SECTIONS: full-width bands, content kept to a readable column */
+
+section {
+    padding: 60px max(30px, calc((100% - var(--content-width)) / 2));
+}
+
+/*
+   Alternating backgrounds. The intro (inside <main>) is grey, so the
+   sections inside <header> start white, then grey, then white...
+   (nth-of-type only counts <section>s, so the aside doesn't throw it off.)
+*/
+header > section {
+    background-color: var(--white);
+}
+
+header > section:nth-of-type(even) {
+    background-color: var(--grey);
+}
+
+/* HEADINGS: centered */
+
+h1,
+h2,
+h3 {
+    text-align: center;
 }
 
 h2 {
     margin-bottom: 20px;
+    color: var(--accent);
 }
 
 h3 {
     margin-bottom: 10px;
 }
 
+/* TEXT, LISTS, LINKS */
+
+p {
+    margin-bottom: 16px;
+}
+
+/* lists: the block is centered in the section, the text inside stays left-aligned */
+section ul,
+section ol {
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto 16px;
+    padding-left: 25px;
+}
+
+/* nested lists (the policy conditions) line up under their parent item instead */
+section li > ul,
+section li > ol {
+    width: auto;
+    margin: 8px 0 0;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+nav ul,
+nav li {
+    margin: 0;
+}
+
+section a,
+aside a {
+    color: var(--accent);
+    font-weight: bold;
+}
+
+section a:hover,
+aside a:hover {
+    text-decoration: none;
+}
+
+/* ASIDE: equipment card */
+
+/* narrow screens: a centered card in the normal flow */
+header > aside {
+    width: auto;
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 25px;
+    background-color: var(--white);
+    border: 3px solid var(--accent);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+header > aside h2 {
+    font-size: 1.3rem;
+}
+
+header > aside ul {
+    margin: 0 0 0 20px;
+}
+
+/*
+   Medium-wide screens: the aside floats right, beside the "BTU Wood Shop
+   Policies" section (the one after it in the HTML). That section is long, but
+   min-height makes sure it can always hold the aside. Its text sits to the
+   left of the aside.
+*/
+@media (min-width: 900px) {
+    header > aside {
+        float: right;
+        width: 300px;
+        max-width: none;
+        margin: 30px 30px 30px 20px;
+    }
+
+    header > aside + section {
+        min-height: 700px;
+        padding-left: 40px;
+        padding-right: 380px;
+    }
+}
+
+/* wide screens: equal padding on both sides so the text stays centered on the page */
+@media (min-width: 1300px) {
+    header > aside + section {
+        padding-left: 360px;
+        padding-right: 360px;
+    }
+}
+
 /* FOOTER */
 
 footer {
+    clear: both;
     padding: 30px;
     text-align: center;
+    background-color: #111;
+    color: white;
+}
+
+/* SMALL SCREENS */
+
+@media (max-width: 600px) {
+    nav > ul {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .hero-image {
+        height: 280px;
+    }
+
+    .hero-title h1 {
+        font-size: 2.5rem;
+    }
+
+    section {
+        padding: 40px 20px;
+    }
+
+    header > aside {
+        margin: 20px;
+    }
 }

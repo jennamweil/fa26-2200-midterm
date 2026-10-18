@@ -1,3 +1,10 @@
+:root {
+    --grey: #e6e6e6;
+    --white: #ffffff;
+    --accent: #f2c200;          
+    --content-width: 900px;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -7,6 +14,7 @@
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
+    background-color: var(--white);
 }
 
 /* HERO IMAGE */
@@ -39,7 +47,7 @@ body {
 
 .hero-title h1 {
     margin: 0;
-    color: yellow;
+    color: var(--accent);
     font-size: 5rem;
     letter-spacing: 0.1em;
     text-align: center;
@@ -51,7 +59,6 @@ nav {
     width: 100%;
     padding: 20px;
     background-color: white;
-    
 }
 
 nav > ul {
@@ -71,6 +78,19 @@ nav a {
 nav a:hover,
 nav a[aria-current="page"] {
     text-decoration: underline;
+}
+
+nav {
+    position: relative;
+}
+
+.nav-logo {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 50px;   /* adjust to taste */
+    width: auto;
 }
 
 /* DROPDOWN MENUS */
@@ -114,27 +134,158 @@ nav a[aria-current="page"] {
 
 /* MAIN CONTENT */
 
+/* main only wraps the intro, so its grey band runs edge to edge */
 main {
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 100%;
+    background-color: var(--grey);
 }
 
-section,
-aside {
-    padding: 60px 30px;
+/* SECTIONS: full-width bands, content kept to a readable column */
+
+section {
+    padding: 60px max(30px, calc((100% - var(--content-width)) / 2));
+}
+
+/*
+   Alternating backgrounds. The intro (inside <main>) is grey, so the
+   sections inside <header> start white, then grey, then white...
+   (nth-of-type only counts <section>s, so the aside doesn't throw it off.)
+*/
+header > section {
+    background-color: var(--white);
+}
+
+header > section:nth-of-type(even) {
+    background-color: var(--grey);
+}
+
+/* HEADINGS: centered */
+
+h1,
+h2,
+h3 {
+    text-align: center;
 }
 
 h2 {
     margin-bottom: 20px;
+    color: var(--accent);
 }
 
 h3 {
     margin-bottom: 10px;
 }
 
+/* TEXT, LISTS, LINKS */
+
+p {
+    margin-bottom: 16px;
+}
+
+section ul,
+section ol {
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto 16px;
+    padding-left: 25px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+nav ul,
+nav li {
+    margin: 0;
+}
+
+section a,
+aside a {
+    color: var(--accent);
+    font-weight: bold;
+}
+
+section a:hover,
+aside a:hover {
+    text-decoration: none;
+}
+
+/* ASIDE: equipment card */
+
+/* narrow screens: a centered card in the normal flow */
+header > aside {
+    width: auto;
+    max-width: 500px;
+    margin: 30px auto;
+    padding: 25px;
+    background-color: var(--white);
+    border: 3px solid var(--accent);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+header > aside h2 {
+    font-size: 1.3rem;
+}
+
+header > aside ul {
+    margin: 0 0 0 20px;
+}
+
+/*
+   Wide screens: the aside floats right, and the section beside it gets equal
+   padding on BOTH sides so its content stays centered on the page. That
+   section is tall enough to hold the aside, and its content is vertically
+   centered next to it. Raise min-height if the aside list grows.
+*/
+@media (min-width: 1200px) {
+    header > aside {
+        float: right;
+        width: 300px;
+        margin: 30px 30px 30px 20px;
+    }
+
+    header > aside + section {
+        min-height: 560px;
+        padding-left: 360px;
+        padding-right: 360px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+}
+
 /* FOOTER */
 
 footer {
+    clear: both;
     padding: 30px;
     text-align: center;
+    background-color: #111;
+    color: white;
+}
+
+/* SMALL SCREENS */
+
+@media (max-width: 600px) {
+    nav > ul {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .hero-image {
+        height: 280px;
+    }
+
+    .hero-title h1 {
+        font-size: 2.5rem;
+    }
+
+    section {
+        padding: 40px 20px;
+    }
+
+    header > aside {
+        margin: 20px;
+    }
 }

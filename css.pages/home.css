@@ -85,6 +85,19 @@ nav li {
     margin: 0;
 }
 
+nav {
+    position: relative;
+}
+
+.nav-logo {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 50px;   /* adjust to taste */
+    width: auto;
+}
+
 /* DROPDOWN MENUS */
 
 .dropdown {

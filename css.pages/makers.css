@@ -84,6 +84,19 @@ nav a[aria-current="page"] {
     text-decoration: underline;
 }
 
+nav {
+    position: relative;
+}
+
+.nav-logo {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 50px;   /* adjust to taste */
+    width: auto;
+}
+
 /* DROPDOWN MENUS */
 
 .dropdown {
@@ -291,6 +304,8 @@ section:last-of-type .person img {
 footer {
     padding: 30px;
     text-align: center;
+    background-color: #111;
+    color: white;
 }
 
 /* MOBILE */

@@ -1,3 +1,9 @@
+:root {
+    --grey: #e6e6e6;
+    --white: #ffffff;
+    --content-width: 800px;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -7,6 +13,7 @@
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
+    background-color: var(--white);
 }
 
 /* HERO IMAGE */
@@ -51,7 +58,6 @@ nav {
     width: 100%;
     padding: 20px;
     background-color: white;
-    
 }
 
 nav > ul {
@@ -71,6 +77,24 @@ nav a {
 nav a:hover,
 nav a[aria-current="page"] {
     text-decoration: underline;
+}
+
+nav ul,
+nav li {
+    margin: 0;
+}
+
+nav {
+    position: relative;
+}
+
+.nav-logo {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 50px;   /* adjust to taste */
+    width: auto;
 }
 
 /* DROPDOWN MENUS */
@@ -115,21 +139,84 @@ nav a[aria-current="page"] {
 /* MAIN CONTENT */
 
 main {
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 100%;
 }
 
-section,
-aside {
-    padding: 60px 30px;
+/* SECTIONS: full-width bands, content kept to a centered column */
+
+section {
+    padding: 70px max(30px, calc((100% - var(--content-width)) / 2));
+}
+
+/* a heading-only section ("Show us. And tell us.") gets a slimmer banner band */
+section:has(> h2:only-child) {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+section > h2:only-child {
+    margin-bottom: 0;
+}
+
+/* alternating backgrounds: 1st, 3rd, 5th... section is grey, the others white */
+main > section {
+    background-color: var(--white);
+}
+
+main > section:nth-of-type(odd) {
+    background-color: var(--grey);
+}
+
+/* if the content sits straight in <main> (no <section>s), main is one grey band instead */
+main:not(:has(> section)) {
+    padding: 80px max(30px, calc((100% - var(--content-width)) / 2));
+    background-color: var(--grey);
+}
+
+/* HEADINGS: centered */
+
+h1,
+h2,
+h3 {
+    text-align: center;
 }
 
 h2 {
     margin-bottom: 20px;
+    color: var(--accent);
 }
 
 h3 {
     margin-bottom: 10px;
+}
+
+/* TEXT, LISTS, LINKS */
+
+p {
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+/* lists: the block is centered, the text inside stays left-aligned */
+main ul,
+main ol {
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto 16px;
+    padding-left: 25px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+main a {
+    color: var(--accent);
+    font-weight: bold;
+}
+
+main a:hover {
+    text-decoration: none;
 }
 
 /* FOOTER */
@@ -137,4 +224,36 @@ h3 {
 footer {
     padding: 30px;
     text-align: center;
+    background-color: #111;
+    color: white;
+}
+
+/* SMALL SCREENS */
+
+@media (max-width: 600px) {
+    nav > ul {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .hero-image {
+        height: 280px;
+    }
+
+    .hero-title h1 {
+        font-size: 2.5rem;
+    }
+
+    section {
+        padding: 45px 20px;
+    }
+
+    section:has(> h2:only-child) {
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+
+    main:not(:has(> section)) {
+        padding: 50px 20px;
+    }
 }
