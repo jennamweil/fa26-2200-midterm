@@ -1,3 +1,9 @@
+:root {
+    --grey: #e6e6e6;
+    --white: #ffffff;
+    --content-width: 900px;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -7,6 +13,7 @@
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
+    background-color: var(--white);
 }
 
 /* HERO IMAGE */
@@ -51,7 +58,6 @@ nav {
     width: 100%;
     padding: 20px;
     background-color: white;
-    
 }
 
 nav > ul {
@@ -115,21 +121,103 @@ nav a[aria-current="page"] {
 /* MAIN CONTENT */
 
 main {
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 100%;
 }
 
-section,
-aside {
-    padding: 60px 30px;
+/* SECTIONS: full-width bands, content kept to a readable column */
+
+section {
+    padding: 60px max(30px, calc((100% - var(--content-width)) / 2));
+}
+
+/* heading-only sections (the "Resources" banner, the Mischief Makers link) get slimmer bands */
+section:has(> h2:only-child) {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+/* alternating backgrounds: 1st, 3rd, 5th... section is grey, the others white */
+main > section {
+    background-color: var(--white);
+}
+
+main > section:nth-of-type(odd) {
+    background-color: var(--grey);
+}
+
+/* HEADINGS: centered */
+
+h1,
+h2,
+h3 {
+    text-align: center;
 }
 
 h2 {
     margin-bottom: 20px;
+    color: var(--accent);
+}
+
+/* space between the stacked topics inside a long section (Laser, 3D, Wood Shop...) */
+section h2:not(:first-child) {
+    margin-top: 40px;
+}
+
+/*
+   FOUR-ACROSS SECTION (Laser Cutting | 3D Printing | Wood Shop | Other Resources)
+   Each topic is a heading plus 3 paragraphs = 4 elements. A grid with 4 rows
+   that fills column by column puts each topic in its own column, with the
+   headings lined up across the top. Targets any section with 4+ headings.
+*/
+section:has(> h2:nth-of-type(4)) {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, auto);
+    grid-auto-flow: column;
+    column-gap: 40px;
+    row-gap: 0;
+    padding-left: max(30px, calc((100% - 1300px) / 2));
+    padding-right: max(30px, calc((100% - 1300px) / 2));
+}
+
+section:has(> h2:nth-of-type(4)) > h2 {
+    margin-top: 0;
 }
 
 h3 {
     margin-bottom: 10px;
+}
+
+/* TEXT, LISTS, LINKS */
+
+p {
+    margin-bottom: 16px;
+}
+
+section ul,
+section ol {
+    width: fit-content;
+    max-width: 100%;
+    margin: 0 auto 16px;
+    padding-left: 25px;
+}
+
+li {
+    margin-bottom: 8px;
+}
+
+nav ul,
+nav li {
+    margin: 0;
+}
+
+section a {
+    color: var(--accent);
+    font-weight: bold;
+}
+
+section a:hover {
+    text-decoration: none;
 }
 
 /* FOOTER */
@@ -137,4 +225,47 @@ h3 {
 footer {
     padding: 30px;
     text-align: center;
+    background-color: #111;
+    color: white;
+}
+
+/* MEDIUM SCREENS: too narrow for four columns, so the topics stack again */
+
+@media (max-width: 1100px) {
+    section:has(> h2:nth-of-type(4)) {
+        display: block;
+        padding-left: max(30px, calc((100% - var(--content-width)) / 2));
+        padding-right: max(30px, calc((100% - var(--content-width)) / 2));
+    }
+
+    section:has(> h2:nth-of-type(4)) > h2:not(:first-child) {
+        margin-top: 40px;
+    }
+}
+
+/* SMALL SCREENS */
+
+@media (max-width: 600px) {
+    nav > ul {
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .hero-image {
+        height: 280px;
+    }
+
+    .hero-title h1 {
+        font-size: 2.5rem;
+    }
+
+    section,
+    section:has(> h2:nth-of-type(4)) {
+        padding: 40px 20px;
+    }
+
+    section:has(> h2:only-child) {
+        padding-top: 25px;
+        padding-bottom: 25px;
+    }
 }
