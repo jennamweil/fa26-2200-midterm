@@ -1,8 +1,11 @@
+/* BTU Lab | 3D Printers */
+
 :root {
     --grey: #e6e6e6;
     --white: #ffffff;
-    --accent: purple;
+    --accent: purple;          /* 3D printing = purple */
     --content-width: 900px;
+    --aside-width: clamp(260px, 30vw, 380px);   /* aside width on wider screens; also reserves space beside its section */
 }
 
 * {
@@ -47,7 +50,7 @@ body {
 
 .hero-title h1 {
     margin: 0;
-    color: purple;
+    color: var(--accent);
     font-size: 5rem;
     letter-spacing: 0.1em;
     text-align: center;
@@ -56,6 +59,7 @@ body {
 /* NAVIGATION */
 
 nav {
+    position: relative;
     width: 100%;
     padding: 20px;
     background-color: white;
@@ -80,15 +84,18 @@ nav a[aria-current="page"] {
     text-decoration: underline;
 }
 
-nav {
-    position: relative;
+nav ul,
+nav li {
+    margin: 0;
 }
 
+/* logo image in the top-left corner of the nav (not a link) */
 .nav-logo {
     position: absolute;
     left: 20px;
     top: 50%;
     transform: translateY(-50%);
+    display: block;
     height: 50px;   /* adjust to taste */
     width: auto;
 }
@@ -134,19 +141,29 @@ nav {
 
 /* MAIN CONTENT */
 
-/* main only wraps the intro; it stays full width so its grey band bleeds edge to edge */
+/* main only wraps the intro, so its grey band runs edge to edge */
 main {
     width: 100%;
     background-color: var(--grey);
 }
 
-/*
-   Full-width bands with content kept to a readable column:
-   side padding grows on wide screens, never drops below 30px.
-*/
-section,
-aside {
+/* SECTIONS: full-width bands, content kept to a readable column */
+
+section {
     padding: 60px max(30px, calc((100% - var(--content-width)) / 2));
+}
+
+/*
+   Alternating backgrounds. The intro (inside <main>) is grey, so the
+   sections inside <header> start white, then grey, then white...
+   (nth-of-type only counts <section>s, so the aside doesn't throw it off.)
+*/
+header > section {
+    background-color: var(--white);
+}
+
+header > section:nth-of-type(even) {
+    background-color: var(--grey);
 }
 
 /* HEADINGS: centered */
@@ -170,19 +187,10 @@ h3 {
 
 p {
     margin-bottom: 16px;
+    overflow-wrap: anywhere; /* keeps the long wizard email list from overflowing */
 }
 
-ul,
-ol {
-    margin: 0 0 16px 25px;
-}
-
-li {
-    margin-bottom: 8px;
-}
-
-/* lists in sections: shrink to their content and center the block in the section
-   (the text inside each item stays left-aligned so it reads cleanly) */
+/* lists: the block is centered in the section, the text inside stays left-aligned */
 section ul,
 section ol {
     width: fit-content;
@@ -191,10 +199,8 @@ section ol {
     padding-left: 25px;
 }
 
-/* the nav lists shouldn't inherit content-list spacing */
-nav ul,
-nav li {
-    margin: 0;
+li {
+    margin-bottom: 8px;
 }
 
 section a,
@@ -208,25 +214,40 @@ aside a:hover {
     text-decoration: none;
 }
 
-/* ALTERNATING SECTION BACKGROUNDS */
+/* ------------------------------------------------------------------
+   "THE REVOLUTION WILL BE PRINTED..." : image on the left of the writing
+   HTML: put the <img> as the first element inside that section.
+   (class="3d" can't be a CSS selector because it starts with a digit,
+   so the section is picked by its aria-labelledby instead.)
+------------------------------------------------------------------- */
 
-/* intro (inside <main>) is grey; sections inside <header> then alternate white / grey.
-   The aside is a floating sidebar, so it is skipped and the pattern continues after it. */
-header > section {
-    background-color: var(--white);
+section[aria-labelledby="3d-heading"] {
+    padding-left: max(30px, calc((100% - 1100px) / 2));
+    padding-right: max(30px, calc((100% - 1100px) / 2));
 }
 
-/* before the aside: odd children are grey */
-header > section:nth-child(odd):not(aside ~ section) {
-    background-color: var(--grey);
+section[aria-labelledby="3d-heading"] > img {
+    float: left;
+    width: min(300px, 30%);
+    margin: 0 56px 20px 0;   /* the 56px on the right is the gap between the image and the text */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* after the aside: even children are grey (keeps the white/grey rhythm unbroken) */
-header > aside ~ section:nth-child(even) {
-    background-color: var(--grey);
+section[aria-labelledby="3d-heading"] h2 {
+    text-align: left;
 }
 
-/* ASIDE: right-hand sidebar */
+/* makes the section grow to include the image, so it never hangs out the bottom */
+section[aria-labelledby="3d-heading"]::after {
+    content: "";
+    display: block;
+    clear: left;
+}
+
+/* ------------------------------------------------------------------
+   ASIDE: equipment & materials card
+------------------------------------------------------------------- */
 
 /* narrow screens: a centered card in the normal flow */
 header > aside {
@@ -245,46 +266,73 @@ header > aside h2 {
 }
 
 header > aside ul {
-    margin-left: 20px;
+    margin: 0 0 0 20px;
 }
 
-/* wide screens: the aside floats right, and the section beside it gets equal
-   padding on BOTH sides so its content stays centered on the page.
-   The section is also tall enough to hold the aside (raise min-height if the aside grows). */
-@media (min-width: 1200px) {
+/*
+   Wider screens: the aside floats to the RIGHT, beside the "TO GAIN FULL
+   INDEPENDENT ACCESS" section (the one after it in the HTML). That section
+   keeps empty space on its right, so its list can never run under the aside,
+   and min-height makes sure the aside always fits inside it.
+*/
+@media (min-width: 600px) {
     header > aside {
         float: right;
-        width: 300px;
+        width: var(--aside-width);
+        max-width: none;
         margin: 30px 30px 30px 20px;
+        position: relative;
+        z-index: 2;
     }
 
     header > aside + section {
         min-height: 560px;
-        padding-left: 360px;
-        padding-right: 360px;
+        padding-left: 40px;
+        padding-right: calc(var(--aside-width) + 60px);
     }
 }
 
-/* footer sits below the floated aside */
-footer {
-    clear: both;
+/* wide screens: equal padding on both sides so the list stays centered on the page */
+@media (min-width: 1300px) {
+    header > aside + section {
+        padding-left: calc(var(--aside-width) + 60px);
+    }
 }
 
 /* FOOTER */
 
 footer {
+    clear: both;
     padding: 30px;
     text-align: center;
     background-color: #111;
     color: white;
 }
 
+/* NARROW SCREENS: the revolution image goes on top of its text */
+
+@media (max-width: 600px) {
+    section[aria-labelledby="3d-heading"] > img {
+        float: none;
+        width: 100%;
+        margin: 0 0 24px;
+    }
+}
+
 /* SMALL SCREENS */
 
-@media (max-width: 700px) {
+@media (max-width: 600px) {
     nav > ul {
         flex-wrap: wrap;
         gap: 20px;
+    }
+
+    /* logo sits on its own line, centered, above the links */
+    .nav-logo {
+        position: static;
+        transform: none;
+        height: 40px;
+        margin: 0 auto 10px;
     }
 
     .hero-image {
@@ -296,11 +344,10 @@ footer {
     }
 
     section,
-    aside {
+    section[aria-labelledby="3d-heading"] {
         padding: 40px 20px;
     }
 
-    /* sidebar is a full-width block on phones */
     header > aside {
         margin: 20px;
     }

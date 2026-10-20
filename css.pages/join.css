@@ -193,6 +193,47 @@ section a:hover {
     color: gray;
 }
 
+/* ------------------------------------------------------------------
+   IMAGE ON THE LEFT OF A SECTION'S TEXT
+   HTML: put the <img> as the FIRST element inside the section, e.g. the
+   "BTU Lab hosts all kinds of workshops!" section. Works on any section
+   that starts with an image.
+------------------------------------------------------------------- */
+
+main > section:has(> img) {
+    display: grid;
+    grid-template-columns: minmax(200px, 300px) 1fr;   /* image | text */
+    column-gap: 56px;
+    align-items: center;                               /* text sits level with the middle of the image */
+    padding-left: max(30px, calc((100% - 1000px) / 2));
+    padding-right: max(30px, calc((100% - 1000px) / 2));
+}
+
+main > section > img {
+    grid-column: 1;
+    grid-row: 1 / span 4;          /* spans the paragraph and the list beside it */
+    display: block;
+    width: 100%;
+    height: auto;                  /* keeps the image's proportions */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+main > section:has(> img) > :not(img) {
+    grid-column: 2;
+}
+
+/* text lines up on the left, beside the image */
+main > section:has(> img) h2,
+main > section:has(> img) p {
+    text-align: left;
+}
+
+main > section:has(> img) ul,
+main > section:has(> img) ol {
+    margin-left: 0;
+}
+
 /* FOOTER */
 
 footer {

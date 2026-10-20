@@ -218,6 +218,46 @@ aside a:hover {
     text-decoration: none;
 }
 
+/* WOOD SHOP ORIENTATIONS: image on the left, writing on the right */
+
+.orientations {
+    display: grid;
+    grid-template-columns: 300px 1fr;   /* image column | text column */
+    column-gap: 40px;
+    align-items: start;
+}
+
+.orientations img {
+    grid-column: 1;
+    grid-row: 1 / span 4;               /* spans the heading and the 3 paragraphs */
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* everything that isn't the image goes in the right-hand column */
+.orientations > :not(img) {
+    grid-column: 2;
+}
+
+/* phones: stack the image on top of the writing */
+@media (max-width: 600px) {
+    .orientations {
+        grid-template-columns: 1fr;
+    }
+
+    .orientations img {
+        grid-row: auto;
+        margin-bottom: 20px;
+    }
+
+    .orientations > :not(img) {
+        grid-column: 1;
+    }
+}
+
 /* ASIDE: equipment card */
 
 /* narrow screens: a centered card in the normal flow */

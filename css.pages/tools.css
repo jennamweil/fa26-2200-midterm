@@ -1,38 +1,39 @@
+
 :root {
     --grey: #e6e6e6;
     --white: #ffffff;
     --accent: green;
     --content-width: 900px;
 }
-
+ 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
-
+ 
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
     background-color: var(--white);
 }
-
+ 
 /* HERO IMAGE */
-
+ 
 .hero-image {
     position: relative;
     width: 100%;
     height: 450px;
     overflow: hidden;
 }
-
+ 
 .hero-image img {
     display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-
+ 
 .hero-title {
     position: absolute;
     top: 0;
@@ -44,7 +45,7 @@ body {
     align-items: center;
     z-index: 2;
 }
-
+ 
 .hero-title h1 {
     margin: 0;
     color: var(--accent);
@@ -52,15 +53,15 @@ body {
     letter-spacing: 0.1em;
     text-align: center;
 }
-
+ 
 /* NAVIGATION */
-
+ 
 nav {
     width: 100%;
     padding: 20px;
     background-color: white;
 }
-
+ 
 nav > ul {
     display: flex;
     justify-content: center;
@@ -68,20 +69,16 @@ nav > ul {
     gap: 50px;
     list-style: none;
 }
-
+ 
 nav a {
     color: black;
     text-decoration: none;
     font-weight: bold;
 }
-
+ 
 nav a:hover,
 nav a[aria-current="page"] {
     text-decoration: underline;
-}
-
-nav {
-    position: relative;
 }
 
 .nav-logo {
@@ -92,13 +89,13 @@ nav {
     height: 50px;   /* adjust to taste */
     width: auto;
 }
-
+ 
 /* DROPDOWN MENUS */
-
+ 
 .dropdown {
     position: relative;
 }
-
+ 
 .dropdown-menu {
     display: none;
     position: absolute;
@@ -112,40 +109,40 @@ nav {
     z-index: 10;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
-
+ 
 .dropdown-menu li {
     padding: 8px 15px;
 }
-
+ 
 .dropdown-menu a {
     display: block;
     white-space: nowrap;
     font-weight: normal;
 }
-
+ 
 .dropdown:hover .dropdown-menu,
 .dropdown:focus-within .dropdown-menu {
     display: block;
 }
-
+ 
 .dropdown-menu a:hover {
     text-decoration: underline;
 }
-
+ 
 /* MAIN CONTENT */
-
+ 
 /* main only wraps the intro, so its grey band runs edge to edge */
 main {
     width: 100%;
     background-color: var(--grey);
 }
-
+ 
 /* SECTIONS: full-width bands, content kept to a readable column */
-
+ 
 section {
     padding: 60px max(30px, calc((100% - var(--content-width)) / 2));
 }
-
+ 
 /*
    Alternating backgrounds. The intro (inside <main>) is grey, so the
    sections inside <header> start white, then grey, then white...
@@ -154,39 +151,39 @@ section {
 header > section {
     background-color: var(--white);
 }
-
+ 
 header > section:nth-of-type(even) {
     background-color: var(--grey);
 }
-
+ 
 /* HEADINGS: centered */
-
+ 
 h1,
 h2,
 h3 {
     text-align: center;
 }
-
+ 
 h2 {
     margin-bottom: 20px;
     color: var(--accent);
 }
-
+ 
 /* the intro has two stacked headings, so tighten the gap between them */
 .intro h2:not(:last-child) {
     margin-bottom: 8px;
 }
-
+ 
 h3 {
     margin-bottom: 10px;
 }
-
+ 
 /* TEXT, LISTS, LINKS */
-
+ 
 p {
     margin-bottom: 16px;
 }
-
+ 
 section ul,
 section ol {
     width: fit-content;
@@ -194,29 +191,29 @@ section ol {
     margin: 0 auto 16px;
     padding-left: 25px;
 }
-
+ 
 li {
     margin-bottom: 8px;
 }
-
+ 
 nav ul,
 nav li {
     margin: 0;
 }
-
+ 
 section a,
 aside a {
     color: var(--accent);
     font-weight: bold;
 }
-
+ 
 section a:hover,
 aside a:hover {
     text-decoration: none;
 }
-
+ 
 /* ASIDE: general equipment card (a long list, so it runs in two columns) */
-
+ 
 /* narrower screens: a centered card in the normal flow */
 header > aside {
     width: auto;
@@ -228,60 +225,86 @@ header > aside {
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
-
+ 
 header > aside h2 {
     font-size: 1.3rem;
 }
-
+ 
 header > aside ul {
     margin: 0 0 0 20px;
     column-count: 2;
     column-gap: 24px;
 }
-
+ 
 header > aside li {
     break-inside: avoid;
 }
-
+ 
 /*
    Wide screens: the aside floats right, and the section beside it gets equal
    padding on BOTH sides so its content stays centered on the page. That
    section is tall enough to hold the aside, and its content is vertically
    centered next to it. Raise min-height if the aside list grows.
 */
-@media (min-width: 900px) {
+@media (min-width: 600px) {
     header > aside {
         float: right;
-        width: 380px;
+        width: clamp(260px, 30vw, 380px);
         max-width: none;
         margin: 30px 30px 30px 20px;
     }
-
-    /* medium-wide: the aside stays on the right and the section's text sits beside it */
+ 
+    /* the section after the aside ("The Tools and the talent...") fills the LEFT side:
+       image on top, writing underneath, with room reserved on the right for the aside */
     header > aside + section {
         min-height: 700px;
         padding-left: 40px;
-        padding-right: 450px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+        padding-right: calc(clamp(260px, 30vw, 380px) + 70px);
+    }
+ 
+    /* the writing in this section stays on the left, so its heading is left-aligned too */
+    header > aside + section h2 {
+        text-align: left;
     }
 }
-
-/* very wide: slightly bigger aside, and equal padding both sides so the text stays centered on the page */
+ 
+/* 700px-899px: the aside is narrow, so its list goes back to one column and the section gets taller */
+@media (min-width: 600px) and (max-width: 899px) {
+    header > aside ul {
+        column-count: 1;
+    }
+ 
+    header > aside + section {
+        min-height: 1050px;
+    }
+}
+ 
+/* very wide: slightly bigger aside, and the left column gets more breathing room */
 @media (min-width: 1500px) {
     header > aside {
         width: 420px;
     }
-
+ 
     header > aside + section {
-        padding-left: 480px;
-        padding-right: 480px;
+        padding-left: 80px;
+        padding-right: 490px;
     }
 }
-
+ 
+/* IMAGE ABOVE THE WRITING */
+ 
+.talent img {
+    display: block;
+    width: 100%;
+    max-height: 380px;
+    margin: 0 0 24px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+ 
 /* FOOTER */
-
+ 
 footer {
     clear: both;
     padding: 30px;
@@ -289,31 +312,31 @@ footer {
     background-color: #111;
     color: white;
 }
-
+ 
 /* SMALL SCREENS */
-
+ 
 @media (max-width: 600px) {
     nav > ul {
         flex-wrap: wrap;
         gap: 20px;
     }
-
+ 
     .hero-image {
         height: 280px;
     }
-
+ 
     .hero-title h1 {
         font-size: 2.5rem;
     }
-
+ 
     section {
         padding: 40px 20px;
     }
-
+ 
     header > aside {
         margin: 20px;
     }
-
+ 
     header > aside ul {
         column-count: 1;
     }

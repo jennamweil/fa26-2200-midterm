@@ -55,6 +55,7 @@ body {
 /* NAVIGATION */
 
 nav {
+    position: relative;
     width: 100%;
     padding: 20px;
     background-color: white;
@@ -84,15 +85,13 @@ nav li {
     margin: 0;
 }
 
-nav {
-    position: relative;
-}
-
+/* logo image in the top-left corner of the nav (not a link) */
 .nav-logo {
     position: absolute;
     left: 20px;
     top: 50%;
     transform: translateY(-50%);
+    display: block;
     height: 50px;   /* adjust to taste */
     width: auto;
 }
@@ -219,6 +218,47 @@ main a:hover {
     text-decoration: none;
 }
 
+/* ------------------------------------------------------------------
+   IMAGE ON THE LEFT OF A SECTION'S TEXT
+   HTML: put the <img> as the FIRST element inside the section, e.g. the
+   "BTU Lab hosts all kinds of workshops!" section. Works on any section
+   that starts with an image.
+------------------------------------------------------------------- */
+
+main > section:has(> img) {
+    display: grid;
+    grid-template-columns: minmax(200px, 300px) 1fr;   /* image | text */
+    column-gap: 56px;
+    align-items: center;                               /* text sits level with the middle of the image */
+    padding-left: max(30px, calc((100% - 1000px) / 2));
+    padding-right: max(30px, calc((100% - 1000px) / 2));
+}
+
+main > section > img {
+    grid-column: 1;
+    grid-row: 1 / span 4;          /* spans the paragraph and the list beside it */
+    display: block;
+    width: 100%;
+    height: auto;                  /* keeps the image's proportions */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+main > section:has(> img) > :not(img) {
+    grid-column: 2;
+}
+
+/* text lines up on the left, beside the image */
+main > section:has(> img) h2,
+main > section:has(> img) p {
+    text-align: left;
+}
+
+main > section:has(> img) ul,
+main > section:has(> img) ol {
+    margin-left: 0;
+}
+
 /* FOOTER */
 
 footer {
@@ -226,6 +266,25 @@ footer {
     text-align: center;
     background-color: #111;
     color: white;
+}
+
+/* NARROW SCREENS: the image goes on top of the text */
+
+@media (max-width: 600px) {
+    main > section:has(> img) {
+        display: block;
+    }
+
+    main > section > img {
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto 24px;
+    }
+
+    main > section:has(> img) h2,
+    main > section:has(> img) p {
+        text-align: center;
+    }
 }
 
 /* SMALL SCREENS */
@@ -236,6 +295,14 @@ footer {
         gap: 20px;
     }
 
+    /* logo sits on its own line, centered, above the links */
+    .nav-logo {
+        position: static;
+        transform: none;
+        height: 40px;
+        margin: 0 auto 10px;
+    }
+
     .hero-image {
         height: 280px;
     }
@@ -244,7 +311,8 @@ footer {
         font-size: 2.5rem;
     }
 
-    section {
+    section,
+    main > section:has(> img) {
         padding: 45px 20px;
     }
 

@@ -55,6 +55,7 @@ body {
 /* NAVIGATION */
 
 nav {
+    position: relative;
     width: 100%;
     padding: 20px;
     background-color: white;
@@ -79,15 +80,18 @@ nav a[aria-current="page"] {
     text-decoration: underline;
 }
 
-nav {
-    position: relative;
+nav ul,
+nav li {
+    margin: 0;
 }
 
+/* logo image in the top-left corner of the nav (not a link) */
 .nav-logo {
     position: absolute;
     left: 20px;
     top: 50%;
     transform: translateY(-50%);
+    display: block;
     height: 50px;   /* adjust to taste */
     width: auto;
 }
@@ -193,17 +197,12 @@ li {
     margin-bottom: 8px;
 }
 
-/* the one-line rule ("BE COOL*") reads as a big, centered statement */
+/* the one-line rule ("BE COOL*") reads as a big, bold statement */
 section ol:has(> li:only-child) {
     list-style-position: inside;
     padding-left: 0;
     font-size: 1.5rem;
     font-weight: bold;
-}
-
-nav ul,
-nav li {
-    margin: 0;
 }
 
 section a {
@@ -215,6 +214,42 @@ section a:hover {
     text-decoration: none;
 }
 
+/* ------------------------------------------------------------------
+   GIF (or any image) ON THE LEFT OF A SECTION'S TEXT
+   HTML: put the <img> as the FIRST element inside the section, e.g. the
+   "Rules" section. Works on any section that starts with an image.
+------------------------------------------------------------------- */
+
+main > section:has(> img) {
+    display: grid;
+    grid-template-columns: minmax(200px, 300px) 1fr;   /* image | text */
+    column-gap: 56px;
+    align-items: center;                               /* text sits level with the middle of the GIF */
+}
+
+main > section > img {
+    grid-column: 1;
+    grid-row: 1 / span 2;          /* spans the heading and the list beside it */
+    display: block;
+    width: 100%;
+    height: auto;                  /* keeps the GIF's proportions */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+main > section:has(> img) > :not(img) {
+    grid-column: 2;
+}
+
+/* heading and list line up on the left, beside the GIF */
+main > section:has(> img) h2 {
+    text-align: left;
+}
+
+main > section:has(> img) ol {
+    margin-left: 0;
+}
+
 /* FOOTER */
 
 footer {
@@ -224,12 +259,38 @@ footer {
     color: white;
 }
 
+/* NARROW SCREENS: the GIF goes on top of the text */
+
+@media (max-width: 600px) {
+    main > section:has(> img) {
+        display: block;
+    }
+
+    main > section > img {
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto 24px;
+    }
+
+    main > section:has(> img) h2 {
+        text-align: center;
+    }
+}
+
 /* SMALL SCREENS */
 
 @media (max-width: 600px) {
     nav > ul {
         flex-wrap: wrap;
         gap: 20px;
+    }
+
+    /* logo sits on its own line, centered, above the links */
+    .nav-logo {
+        position: static;
+        transform: none;
+        height: 40px;
+        margin: 0 auto 10px;
     }
 
     .hero-image {
