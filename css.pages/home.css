@@ -199,6 +199,10 @@ p {
 
 /* EXPLORE CARDS */
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> e2dfcfcd9c440bf18a072c027adeacef207a3813
 .card-grid {
     display: flex;
     flex-wrap: wrap;
@@ -220,7 +224,8 @@ p {
     padding: 20px;
     justify-content: center;
     align-items: center;
-    background-color: var(--card-grey);
+    background-size: cover;
+    background-position: center;
     border: 3px solid black;
     border-radius: 18px;
     color: white;
@@ -236,6 +241,40 @@ p {
     background-color: black;
     transform: translateY(-4px);
 }
+
+.tools-card {
+    background-image: url("../media/tools.jpeg");
+}
+
+.wood-card {
+    background-image: url("../media/wood.jpeg");
+}
+
+.sewing-card {
+    background-image: url("../media/sewing-textiles.jpeg");
+}
+
+.electronics-card {
+    background-image: url("../media/electronics.jpeg");
+}
+
+.printing-card {
+    background-image: url("../media/3d.jpeg");
+}
+
+.cnc-card {
+    background-image: url("../media/cnc.jpeg");
+}
+
+.lasers-card {
+    background-image: url("../media/laser-beams.jpeg") ;
+}
+
+.faculty-card {
+    background-image: url("../media/logo.jpg") ;
+}
+
+
 
 /* CALENDAR */
 
