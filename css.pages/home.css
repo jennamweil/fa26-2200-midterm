@@ -94,7 +94,7 @@ nav {
     left: 20px;
     top: 50%;
     transform: translateY(-50%);
-    height: 50px;   /* adjust to taste */
+    height: 50px;   
     width: auto;
 }
 
@@ -137,45 +137,9 @@ nav {
     text-decoration: underline;
 }
 
-/* SEARCH (in the nav) */
-
-.search {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.search label {
-    font-weight: bold;
-}
-
-.search input[type="search"] {
-    width: 180px;
-    padding: 6px 10px;
-    border: 2px solid black;
-    border-radius: 8px;
-    font: inherit;
-}
-
-.search button {
-    padding: 6px 14px;
-    border: 2px solid black;
-    border-radius: 8px;
-    background-color: var(--card-grey);
-    color: white;
-    font: inherit;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.search button:hover {
-    background-color: black;
-}
 
 /* MAIN CONTENT */
 
-/* main spans the full width so the intro's grey band runs edge to edge;
-   the intro itself keeps your 1200px content cap */
 main {
     width: 100%;
     background-color: var(--grey);
@@ -186,22 +150,17 @@ main {
     margin: 0 auto;
 }
 
-/* SECTIONS: full-width bands, content kept to a 1200px column */
+/* SECTIONS */
 
 section,
 aside {
     padding: 60px max(30px, calc((100% - var(--content-width)) / 2));
 }
 
-/* the intro sits inside <main>, which already handles centering */
 .intro {
     padding: 60px 30px;
 }
 
-/*
-   Alternating backgrounds. The intro (inside <main>) is grey, so the
-   sections below it go white (Explore), then grey (Calendar).
-*/
 body > section {
     background-color: var(--white);
 }
@@ -209,8 +168,6 @@ body > section {
 body > section:nth-of-type(even) {
     background-color: var(--grey);
 }
-
-/* HEADINGS: centered */
 
 h1,
 h2,
@@ -232,7 +189,7 @@ p {
     margin-bottom: 16px;
 }
 
-/* welcome blurb: centered under its heading */
+/* INTRO */
 .intro p {
     max-width: 800px;
     margin-left: auto;
@@ -242,10 +199,6 @@ p {
 
 /* EXPLORE CARDS */
 
-/*
-   Flex instead of grid so an incomplete last row (8 cards in 3 columns
-   leaves 2) is centered rather than pushed to the left.
-*/
 .card-grid {
     display: flex;
     flex-wrap: wrap;
@@ -315,7 +268,7 @@ footer {
     color: white;
 }
 
-/* MEDIUM SCREENS: two cards across */
+/* SCREENS SIZES */
 
 @media (max-width: 900px) {
     .card-grid {
@@ -326,8 +279,6 @@ footer {
         flex-basis: calc((100% - 25px) / 2);
     }
 }
-
-/* SMALL SCREENS */
 
 @media (max-width: 600px) {
     nav > ul {

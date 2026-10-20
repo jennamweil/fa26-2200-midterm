@@ -89,7 +89,7 @@ nav {
     left: 20px;
     top: 50%;
     transform: translateY(-50%);
-    height: 50px;   /* adjust to taste */
+    height: 50px;  
     width: auto;
 }
 
@@ -134,23 +134,18 @@ nav {
 
 /* MAIN CONTENT */
 
-/* main only wraps the intro, so its grey band runs edge to edge */
 main {
     width: 100%;
     background-color: var(--grey);
 }
 
-/* SECTIONS: full-width bands, content kept to a readable column */
+/* SECTIONS */
 
 section {
     padding: 60px max(30px, calc((100% - var(--content-width)) / 2));
 }
 
-/*
-   Alternating backgrounds. The intro (inside <main>) is grey, so the
-   sections inside <header> start white, then grey, then white...
-   (nth-of-type only counts <section>s, so the aside doesn't throw it off.)
-*/
+
 header > section {
     background-color: var(--white);
 }
@@ -158,8 +153,6 @@ header > section {
 header > section:nth-of-type(even) {
     background-color: var(--grey);
 }
-
-/* HEADINGS: centered */
 
 h1,
 h2,
@@ -182,7 +175,6 @@ p {
     margin-bottom: 16px;
 }
 
-/* lists: the block is centered in the section, the text inside stays left-aligned */
 section ul,
 section ol {
     width: fit-content;
@@ -191,7 +183,6 @@ section ol {
     padding-left: 25px;
 }
 
-/* nested lists (the policy conditions) line up under their parent item instead */
 section li > ul,
 section li > ol {
     width: auto;
@@ -218,18 +209,18 @@ aside a:hover {
     text-decoration: none;
 }
 
-/* WOOD SHOP ORIENTATIONS: image on the left, writing on the right */
+/* WOOD SHOP ORIENTATIONS */
 
 .orientations {
     display: grid;
-    grid-template-columns: 300px 1fr;   /* image column | text column */
+    grid-template-columns: 300px 1fr;  
     column-gap: 40px;
     align-items: start;
 }
 
 .orientations img {
     grid-column: 1;
-    grid-row: 1 / span 4;               /* spans the heading and the 3 paragraphs */
+    grid-row: 1 / span 4;             
     display: block;
     width: 100%;
     height: auto;
@@ -237,12 +228,11 @@ aside a:hover {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* everything that isn't the image goes in the right-hand column */
 .orientations > :not(img) {
     grid-column: 2;
 }
 
-/* phones: stack the image on top of the writing */
+/* SCREEN */
 @media (max-width: 600px) {
     .orientations {
         grid-template-columns: 1fr;
@@ -258,9 +248,7 @@ aside a:hover {
     }
 }
 
-/* ASIDE: equipment card */
-
-/* narrow screens: a centered card in the normal flow */
+/* ASIDE */
 header > aside {
     width: auto;
     max-width: 500px;
@@ -280,12 +268,7 @@ header > aside ul {
     margin: 0 0 0 20px;
 }
 
-/*
-   Medium-wide screens: the aside floats right, beside the "BTU Wood Shop
-   Policies" section (the one after it in the HTML). That section is long, but
-   min-height makes sure it can always hold the aside. Its text sits to the
-   left of the aside.
-*/
+/* SCREENS */
 @media (min-width: 900px) {
     header > aside {
         float: right;
@@ -301,7 +284,6 @@ header > aside ul {
     }
 }
 
-/* wide screens: equal padding on both sides so the text stays centered on the page */
 @media (min-width: 1300px) {
     header > aside + section {
         padding-left: 360px;

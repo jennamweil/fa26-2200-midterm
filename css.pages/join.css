@@ -93,7 +93,7 @@ nav {
     left: 20px;
     top: 50%;
     transform: translateY(-50%);
-    height: 50px;   /* adjust to taste */
+    height: 50px;  
     width: auto;
 }
 
@@ -142,13 +142,12 @@ main {
     width: 100%;
 }
 
-/* SECTIONS: full-width bands, content kept to a centered column */
+/* SECTIONS */
 
 section {
     padding: 70px max(30px, calc((100% - var(--content-width)) / 2));
 }
 
-/* alternating backgrounds: 1st, 3rd, 5th... section is grey, the others white */
 main > section {
     background-color: var(--white);
 }
@@ -156,8 +155,6 @@ main > section {
 main > section:nth-of-type(odd) {
     background-color: var(--grey);
 }
-
-/* HEADINGS: centered */
 
 h1,
 h2,
@@ -193,28 +190,23 @@ section a:hover {
     color: gray;
 }
 
-/* ------------------------------------------------------------------
-   IMAGE ON THE LEFT OF A SECTION'S TEXT
-   HTML: put the <img> as the FIRST element inside the section, e.g. the
-   "BTU Lab hosts all kinds of workshops!" section. Works on any section
-   that starts with an image.
-------------------------------------------------------------------- */
+/* IMAGE */
 
 main > section:has(> img) {
     display: grid;
-    grid-template-columns: minmax(200px, 300px) 1fr;   /* image | text */
+    grid-template-columns: minmax(200px, 300px) 1fr;   
     column-gap: 56px;
-    align-items: center;                               /* text sits level with the middle of the image */
+    align-items: center;                              
     padding-left: max(30px, calc((100% - 1000px) / 2));
     padding-right: max(30px, calc((100% - 1000px) / 2));
 }
 
 main > section > img {
     grid-column: 1;
-    grid-row: 1 / span 4;          /* spans the paragraph and the list beside it */
+    grid-row: 1 / span 4;       
     display: block;
     width: 100%;
-    height: auto;                  /* keeps the image's proportions */
+    height: auto;                 
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
@@ -223,7 +215,6 @@ main > section:has(> img) > :not(img) {
     grid-column: 2;
 }
 
-/* text lines up on the left, beside the image */
 main > section:has(> img) h2,
 main > section:has(> img) p {
     text-align: left;

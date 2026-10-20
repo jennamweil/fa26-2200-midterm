@@ -87,7 +87,6 @@ nav li {
     margin: 0;
 }
 
-/* logo image in the top-left corner of the nav (not a link) */
 .nav-logo {
     position: absolute;
     left: 20px;
@@ -138,24 +137,17 @@ nav li {
 }
 
 /* MAIN CONTENT */
-
-/* main only wraps the intro, so its grey band runs edge to edge */
 main {
     width: 100%;
     background-color: var(--grey);
 }
 
-/* SECTIONS: full-width bands, content kept to a readable column */
+/* SECTIONS */
 
 section {
     padding: 60px max(30px, calc((100% - var(--content-width)) / 2));
 }
 
-/*
-   Alternating backgrounds. The intro (inside <main>) is grey, so the
-   sections inside <header> start white, then grey, then white...
-   (nth-of-type only counts <section>s, so the aside doesn't throw it off.)
-*/
 header > section {
     background-color: var(--white);
 }
@@ -163,8 +155,6 @@ header > section {
 header > section:nth-of-type(even) {
     background-color: var(--grey);
 }
-
-/* HEADINGS: centered */
 
 h1,
 h2,
@@ -185,7 +175,7 @@ h3 {
 
 p {
     margin-bottom: 16px;
-    overflow-wrap: anywhere; /* keeps the long wizard email list from overflowing */
+    overflow-wrap: anywhere; 
 }
 
 section ul,
@@ -211,9 +201,8 @@ aside a:hover {
     text-decoration: none;
 }
 
-/* ASIDE: equipment & materials card */
+/* ASIDE */
 
-/* narrow screens: a centered card in the normal flow */
 header > aside {
     width: auto;
     max-width: 500px;
@@ -233,20 +222,12 @@ header > aside ul {
     margin: 0 0 0 20px;
 }
 
-/* nested size lists ([762mm x 457mm]) */
 header > aside ul ul {
     margin-top: 6px;
     margin-bottom: 0;
 }
 
-/*
-   Wider screens: the aside floats to the RIGHT. The "Laser Cutting
-   Orientations" section (class="laser") keeps empty space on its right for the
-   aside, so its text stays in the left column and can never run underneath it.
-   The aside also sits above everything else (z-index) as a second safeguard.
-   NOTE: in the HTML, the <aside> must come directly BEFORE <section class="laser">.
-   Raise min-height if the aside list ever gets taller than the section.
-*/
+/* SCREEN SIZES*/
 @media (min-width: 600px) {
     header > aside {
         float: right;
@@ -258,10 +239,10 @@ header > aside ul ul {
     }
 
     .laser {
-        min-height: 0;       /* section is only as tall as its content; raise this if the aside sits beside it and runs past the bottom */
+        min-height: 0;       
         padding-top: 40px;
         padding-bottom: 40px;
-        padding-left: 70px;  /* pushes the image and text farther in from the left edge */
+        padding-left: 70px; 
         padding-right: calc(var(--aside-width) + 60px);
     }
 
@@ -270,24 +251,18 @@ header > aside ul ul {
     }
 }
 
-/*
-   IMAGES TO THE RIGHT OF THE TEXT
-   Put the <img> as the FIRST element inside the section. If a section has no
-   image, it just stays a normal text section (that's what :has(> img) checks).
-   Applies to:  <section class="laser">   (Laser Cutting Orientations)
-                <section class="wizards"> (BTU Lazor Wizards)
-*/
+/* IMAGES */
 header > section:has(> img):not(.laser) {
-    clear: both;   /* start below the aside, so the band stays full width */
+    clear: both;   
     display: grid;
-    grid-template-columns: 1fr minmax(220px, 320px);   /* text | image */
+    grid-template-columns: 1fr minmax(220px, 320px);   
     column-gap: 32px;
     align-items: start;
 }
 
 header > section > img {
     grid-column: 2;
-    grid-row: 1 / span 6;      /* spans the heading and the paragraphs beside it */
+    grid-row: 1 / span 6;      
     display: block;
     width: 100%;
     max-width: 100%;
@@ -298,29 +273,22 @@ header > section > img {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* everything that isn't the image goes in the left column */
 header > section:has(> img):not(.laser) > :not(img) {
     grid-column: 1;
 }
 
-/* laser section: the image floats right inside the text area. (No grid here: a grid
-   section would shrink to fit beside the aside and its grey/white band would stop short.) */
 .laser > img {
     float: left;
     width: min(300px, 30%);
-    margin: 0 56px 20px 0;   /* the 56px on the right is the gap between the image and the text */
+    margin: 0 56px 20px 0;   
 }
 
-/* makes the section grow to include its floated image, so the image never hangs out the bottom
-   (clear: left only clears the image, not the aside floated on the right) */
 .laser::after {
     content: "";
     display: block;
     clear: left;
 }
 
-/* a text + image section with no aside beside it (like the wizards) can use a wider column;
-   the laser section keeps its own padding, set above, to leave room for the aside */
 header > section:has(> img):not(.laser) {
     padding-left: max(30px, calc((100% - 1100px) / 2));
     padding-right: max(30px, calc((100% - 1100px) / 2));
@@ -340,7 +308,7 @@ footer {
     color: white;
 }
 
-/* NARROWER SCREENS: images stack on top of their text */
+/* SCREENS */
 
 @media (max-width: 999px) {
     .laser > img {
@@ -360,7 +328,6 @@ footer {
     }
 }
 
-/* SMALL SCREENS */
 
 @media (max-width: 600px) {
     nav > ul {
@@ -368,7 +335,6 @@ footer {
         gap: 20px;
     }
 
-    /* logo sits on its own line, centered, above the links */
     .nav-logo {
         position: static;
         transform: none;

@@ -86,7 +86,7 @@ nav a[aria-current="page"] {
     left: 20px;
     top: 50%;
     transform: translateY(-50%);
-    height: 50px;   /* adjust to taste */
+    height: 50px;  
     width: auto;
 }
  
@@ -131,23 +131,17 @@ nav a[aria-current="page"] {
  
 /* MAIN CONTENT */
  
-/* main only wraps the intro, so its grey band runs edge to edge */
 main {
     width: 100%;
     background-color: var(--grey);
 }
  
-/* SECTIONS: full-width bands, content kept to a readable column */
+/* SECTIONS */
  
 section {
     padding: 60px max(30px, calc((100% - var(--content-width)) / 2));
 }
  
-/*
-   Alternating backgrounds. The intro (inside <main>) is grey, so the
-   sections inside <header> start white, then grey, then white...
-   (nth-of-type only counts <section>s, so the aside doesn't throw it off.)
-*/
 header > section {
     background-color: var(--white);
 }
@@ -155,8 +149,6 @@ header > section {
 header > section:nth-of-type(even) {
     background-color: var(--grey);
 }
- 
-/* HEADINGS: centered */
  
 h1,
 h2,
@@ -169,7 +161,6 @@ h2 {
     color: var(--accent);
 }
  
-/* the intro has two stacked headings, so tighten the gap between them */
 .intro h2:not(:last-child) {
     margin-bottom: 8px;
 }
@@ -212,9 +203,8 @@ aside a:hover {
     text-decoration: none;
 }
  
-/* ASIDE: general equipment card (a long list, so it runs in two columns) */
+/* ASIDE */
  
-/* narrower screens: a centered card in the normal flow */
 header > aside {
     width: auto;
     max-width: 500px;
@@ -240,12 +230,7 @@ header > aside li {
     break-inside: avoid;
 }
  
-/*
-   Wide screens: the aside floats right, and the section beside it gets equal
-   padding on BOTH sides so its content stays centered on the page. That
-   section is tall enough to hold the aside, and its content is vertically
-   centered next to it. Raise min-height if the aside list grows.
-*/
+/* SCREEN SIZES */
 @media (min-width: 600px) {
     header > aside {
         float: right;
@@ -267,8 +252,7 @@ header > aside li {
         text-align: left;
     }
 }
- 
-/* 700px-899px: the aside is narrow, so its list goes back to one column and the section gets taller */
+
 @media (min-width: 600px) and (max-width: 899px) {
     header > aside ul {
         column-count: 1;
@@ -278,8 +262,7 @@ header > aside li {
         min-height: 1050px;
     }
 }
- 
-/* very wide: slightly bigger aside, and the left column gets more breathing room */
+
 @media (min-width: 1500px) {
     header > aside {
         width: 420px;

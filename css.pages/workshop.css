@@ -85,14 +85,13 @@ nav li {
     margin: 0;
 }
 
-/* logo image in the top-left corner of the nav (not a link) */
 .nav-logo {
     position: absolute;
     left: 20px;
     top: 50%;
     transform: translateY(-50%);
     display: block;
-    height: 50px;   /* adjust to taste */
+    height: 50px;  
     width: auto;
 }
 
@@ -141,13 +140,12 @@ main {
     width: 100%;
 }
 
-/* SECTIONS: full-width bands, content kept to a centered column */
+/* SECTIONS */
 
 section {
     padding: 70px max(30px, calc((100% - var(--content-width)) / 2));
 }
 
-/* a heading-only section ("Show us. And tell us.") gets a slimmer banner band */
 section:has(> h2:only-child) {
     padding-top: 40px;
     padding-bottom: 40px;
@@ -157,7 +155,6 @@ section > h2:only-child {
     margin-bottom: 0;
 }
 
-/* alternating backgrounds: 1st, 3rd, 5th... section is grey, the others white */
 main > section {
     background-color: var(--white);
 }
@@ -166,13 +163,11 @@ main > section:nth-of-type(odd) {
     background-color: var(--grey);
 }
 
-/* if the content sits straight in <main> (no <section>s), main is one grey band instead */
 main:not(:has(> section)) {
     padding: 80px max(30px, calc((100% - var(--content-width)) / 2));
     background-color: var(--grey);
 }
 
-/* HEADINGS: centered */
 
 h1,
 h2,
@@ -196,7 +191,6 @@ p {
     text-align: center;
 }
 
-/* lists: the block is centered, the text inside stays left-aligned */
 main ul,
 main ol {
     width: fit-content;
@@ -218,28 +212,23 @@ main a:hover {
     text-decoration: none;
 }
 
-/* ------------------------------------------------------------------
-   IMAGE ON THE LEFT OF A SECTION'S TEXT
-   HTML: put the <img> as the FIRST element inside the section, e.g. the
-   "BTU Lab hosts all kinds of workshops!" section. Works on any section
-   that starts with an image.
-------------------------------------------------------------------- */
+/* IMAGE */
 
 main > section:has(> img) {
     display: grid;
-    grid-template-columns: minmax(200px, 300px) 1fr;   /* image | text */
+    grid-template-columns: minmax(200px, 300px) 1fr;   
     column-gap: 56px;
-    align-items: center;                               /* text sits level with the middle of the image */
+    align-items: center;                               
     padding-left: max(30px, calc((100% - 1000px) / 2));
     padding-right: max(30px, calc((100% - 1000px) / 2));
 }
 
 main > section > img {
     grid-column: 1;
-    grid-row: 1 / span 4;          /* spans the paragraph and the list beside it */
+    grid-row: 1 / span 4;        
     display: block;
     width: 100%;
-    height: auto;                  /* keeps the image's proportions */
+    height: auto;                 
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
@@ -248,7 +237,6 @@ main > section:has(> img) > :not(img) {
     grid-column: 2;
 }
 
-/* text lines up on the left, beside the image */
 main > section:has(> img) h2,
 main > section:has(> img) p {
     text-align: left;
@@ -268,7 +256,7 @@ footer {
     color: white;
 }
 
-/* NARROW SCREENS: the image goes on top of the text */
+/* SCREENS */
 
 @media (max-width: 600px) {
     main > section:has(> img) {
@@ -287,15 +275,12 @@ footer {
     }
 }
 
-/* SMALL SCREENS */
-
 @media (max-width: 600px) {
     nav > ul {
         flex-wrap: wrap;
         gap: 20px;
     }
 
-    /* logo sits on its own line, centered, above the links */
     .nav-logo {
         position: static;
         transform: none;

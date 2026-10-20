@@ -88,7 +88,7 @@ nav {
     left: 20px;
     top: 50%;
     transform: translateY(-50%);
-    height: 50px;   /* adjust to taste */
+    height: 50px;  
     width: auto;
 }
  
@@ -131,13 +131,12 @@ nav {
     text-decoration: underline;
 }
  
-/* SECTIONS: full-width bands, content kept to a readable column */
+/* SECTIONS */
  
 section {
     padding: 60px max(30px, calc((100% - var(--content-width)) / 2));
 }
  
-/* alternating backgrounds: 1st, 3rd, 5th... section is grey, the others white */
 header > section {
     background-color: var(--white);
 }
@@ -145,8 +144,6 @@ header > section {
 header > section:nth-of-type(odd) {
     background-color: var(--grey);
 }
- 
-/* HEADINGS: centered */
  
 h1,
 h2,
@@ -169,7 +166,7 @@ p {
     margin-bottom: 16px;
 }
  
-/* content lists: centered block, left-aligned text */
+/* LISTS */
 section ul,
 section ol {
     width: fit-content;

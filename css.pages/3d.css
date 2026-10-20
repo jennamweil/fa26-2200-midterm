@@ -3,10 +3,9 @@
 :root {
     --grey: #e6e6e6;
     --white: #ffffff;
-    --accent: purple;          /* 3D printing = purple */
+    --accent: purple;
     --content-width: 900px;
-    --aside-width: clamp(260px, 30vw, 380px);   /* aside width on wider screens; also reserves space beside its section */
-}
+    --aside-width: clamp(260px, 30vw, 380px); 
 
 * {
     box-sizing: border-box;
@@ -89,14 +88,13 @@ nav li {
     margin: 0;
 }
 
-/* logo image in the top-left corner of the nav (not a link) */
 .nav-logo {
     position: absolute;
     left: 20px;
     top: 50%;
     transform: translateY(-50%);
     display: block;
-    height: 50px;   /* adjust to taste */
+    height: 50px;  
     width: auto;
 }
 
@@ -141,23 +139,17 @@ nav li {
 
 /* MAIN CONTENT */
 
-/* main only wraps the intro, so its grey band runs edge to edge */
 main {
     width: 100%;
     background-color: var(--grey);
 }
 
-/* SECTIONS: full-width bands, content kept to a readable column */
+/* SECTIONS */
 
 section {
     padding: 60px max(30px, calc((100% - var(--content-width)) / 2));
 }
 
-/*
-   Alternating backgrounds. The intro (inside <main>) is grey, so the
-   sections inside <header> start white, then grey, then white...
-   (nth-of-type only counts <section>s, so the aside doesn't throw it off.)
-*/
 header > section {
     background-color: var(--white);
 }
@@ -165,8 +157,6 @@ header > section {
 header > section:nth-of-type(even) {
     background-color: var(--grey);
 }
-
-/* HEADINGS: centered */
 
 h1,
 h2,
@@ -187,10 +177,9 @@ h3 {
 
 p {
     margin-bottom: 16px;
-    overflow-wrap: anywhere; /* keeps the long wizard email list from overflowing */
+    overflow-wrap: anywhere; 
 }
 
-/* lists: the block is centered in the section, the text inside stays left-aligned */
 section ul,
 section ol {
     width: fit-content;
@@ -214,12 +203,7 @@ aside a:hover {
     text-decoration: none;
 }
 
-/* ------------------------------------------------------------------
-   "THE REVOLUTION WILL BE PRINTED..." : image on the left of the writing
-   HTML: put the <img> as the first element inside that section.
-   (class="3d" can't be a CSS selector because it starts with a digit,
-   so the section is picked by its aria-labelledby instead.)
-------------------------------------------------------------------- */
+/* IMAGE */
 
 section[aria-labelledby="3d-heading"] {
     padding-left: max(30px, calc((100% - 1100px) / 2));
@@ -229,7 +213,7 @@ section[aria-labelledby="3d-heading"] {
 section[aria-labelledby="3d-heading"] > img {
     float: left;
     width: min(300px, 30%);
-    margin: 0 56px 20px 0;   /* the 56px on the right is the gap between the image and the text */
+    margin: 0 56px 20px 0;   
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
@@ -238,18 +222,14 @@ section[aria-labelledby="3d-heading"] h2 {
     text-align: left;
 }
 
-/* makes the section grow to include the image, so it never hangs out the bottom */
 section[aria-labelledby="3d-heading"]::after {
     content: "";
     display: block;
     clear: left;
 }
 
-/* ------------------------------------------------------------------
-   ASIDE: equipment & materials card
-------------------------------------------------------------------- */
+/* ASIDE SIZES */
 
-/* narrow screens: a centered card in the normal flow */
 header > aside {
     width: auto;
     max-width: 500px;
@@ -269,12 +249,6 @@ header > aside ul {
     margin: 0 0 0 20px;
 }
 
-/*
-   Wider screens: the aside floats to the RIGHT, beside the "TO GAIN FULL
-   INDEPENDENT ACCESS" section (the one after it in the HTML). That section
-   keeps empty space on its right, so its list can never run under the aside,
-   and min-height makes sure the aside always fits inside it.
-*/
 @media (min-width: 600px) {
     header > aside {
         float: right;
@@ -292,7 +266,6 @@ header > aside ul {
     }
 }
 
-/* wide screens: equal padding on both sides so the list stays centered on the page */
 @media (min-width: 1300px) {
     header > aside + section {
         padding-left: calc(var(--aside-width) + 60px);
@@ -309,7 +282,7 @@ footer {
     color: white;
 }
 
-/* NARROW SCREENS: the revolution image goes on top of its text */
+/* SCREEN SIZE */
 
 @media (max-width: 600px) {
     section[aria-labelledby="3d-heading"] > img {
@@ -319,7 +292,6 @@ footer {
     }
 }
 
-/* SMALL SCREENS */
 
 @media (max-width: 600px) {
     nav > ul {
@@ -327,7 +299,6 @@ footer {
         gap: 20px;
     }
 
-    /* logo sits on its own line, centered, above the links */
     .nav-logo {
         position: static;
         transform: none;
@@ -351,4 +322,5 @@ footer {
     header > aside {
         margin: 20px;
     }
+}
 }

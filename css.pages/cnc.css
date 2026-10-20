@@ -86,7 +86,6 @@ nav li {
     margin: 0;
 }
 
-/* logo image in the top-left corner of the nav (not a link) */
 .nav-logo {
     position: absolute;
     left: 20px;
@@ -138,22 +137,17 @@ nav li {
 
 /* MAIN CONTENT */
 
-/* main only wraps the intro, so its grey band runs edge to edge */
 main {
     width: 100%;
     background-color: var(--grey);
 }
 
-/* SECTIONS: full-width bands, content kept to a readable column */
+/* SECTIONS */
 
 section {
     padding: 60px max(30px, calc((100% - var(--content-width)) / 2));
 }
 
-/*
-   Alternating backgrounds. The intro (inside <main>) is grey, so the
-   sections inside <header> start white, then grey, then white...
-*/
 header > section {
     background-color: var(--white);
 }
@@ -161,8 +155,6 @@ header > section {
 header > section:nth-of-type(even) {
     background-color: var(--grey);
 }
-
-/* HEADINGS: centered */
 
 h1,
 h2,
@@ -206,10 +198,7 @@ section a:hover {
     text-decoration: none;
 }
 
-/* ------------------------------------------------------------------
-   "'CAUSE I'M CNC ...DYNAMITE!" : image on the left of the writing
-   HTML: put the <img> as the first element inside <section class="cnc">.
-------------------------------------------------------------------- */
+/* IMAGE */
 
 .cnc {
     padding-left: max(30px, calc((100% - 1100px) / 2));
@@ -219,7 +208,7 @@ section a:hover {
 .cnc > img {
     float: left;
     width: min(320px, 32%);
-    margin: 0 56px 20px 0;   /* the 56px on the right is the gap between the image and the text */
+    margin: 0 56px 20px 0;   
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
@@ -228,7 +217,6 @@ section a:hover {
     text-align: left;
 }
 
-/* makes the section grow to include the image, so it never hangs out the bottom */
 .cnc::after {
     content: "";
     display: block;
@@ -244,7 +232,7 @@ footer {
     color: white;
 }
 
-/* NARROW SCREENS: the image goes on top of its text */
+/* SCREEN SIZES */
 
 @media (max-width: 600px) {
     .cnc > img {
@@ -254,15 +242,12 @@ footer {
     }
 }
 
-/* SMALL SCREENS */
-
 @media (max-width: 600px) {
     nav > ul {
         flex-wrap: wrap;
         gap: 20px;
     }
 
-    /* logo sits on its own line, centered, above the links */
     .nav-logo {
         position: static;
         transform: none;

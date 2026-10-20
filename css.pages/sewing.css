@@ -89,7 +89,7 @@ nav {
     left: 20px;
     top: 50%;
     transform: translateY(-50%);
-    height: 50px;   /* adjust to taste */
+    height: 50px;  
     width: auto;
 }
 
@@ -134,23 +134,17 @@ nav {
 
 /* MAIN CONTENT */
 
-/* main only wraps the intro, so its grey band runs edge to edge */
 main {
     width: 100%;
     background-color: var(--grey);
 }
 
-/* SECTIONS: full-width bands, content kept to a readable column */
+/* SECTIONS */
 
 section {
     padding: 60px max(30px, calc((100% - var(--content-width)) / 2));
 }
 
-/*
-   Alternating backgrounds. The intro (inside <main>) is grey, so the
-   sections inside <header> start white, then grey, then white...
-   (nth-of-type only counts <section>s, so the aside doesn't throw it off.)
-*/
 header > section {
     background-color: var(--white);
 }
@@ -158,8 +152,6 @@ header > section {
 header > section:nth-of-type(even) {
     background-color: var(--grey);
 }
-
-/* HEADINGS: centered */
 
 h1,
 h2,
@@ -210,9 +202,7 @@ aside a:hover {
     text-decoration: none;
 }
 
-/* ASIDE: equipment card */
-
-/* narrow screens: a centered card in the normal flow */
+/* ASIDE */
 header > aside {
     width: auto;
     max-width: 500px;
@@ -232,13 +222,8 @@ header > aside ul {
     margin: 0 0 0 20px;
 }
 
-/*
-   Wide screens: the aside floats right, and the section beside it gets equal
-   padding on BOTH sides so its content stays centered on the page. That
-   section is tall enough to hold the aside, and its content is vertically
-   centered next to it. Raise min-height if the aside list grows.
-*/
-/* aside on the right; the section beside it holds the image and writing on the left */
+/* SCREENS */
+
 @media (min-width: 700px) {
     header > aside {
         float: right;
@@ -258,8 +243,6 @@ header > aside ul {
         text-align: left;
     }
 }
-
-/* IMAGE ABOVE THE WRITING */
 
 .sew img {
     display: block;
