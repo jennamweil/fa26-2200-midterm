@@ -1,3 +1,5 @@
+/* BTU Lab | Home */
+
 :root {
     --grey: #e6e6e6;
     --white: #ffffff;
@@ -9,6 +11,12 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+img,
+video {
+    max-width: 100%;
+    height: auto;
 }
 
 body {
@@ -47,18 +55,30 @@ body {
 
 .hero-title h1 {
     margin: 0;
+    padding: 0 16px;
     color: white;
-    font-size: 5rem;
+    font-size: clamp(2rem, 10vw, 5rem);
     letter-spacing: 0.1em;
     text-align: center;
+    overflow-wrap: anywhere;
 }
 
 /* NAVIGATION */
 
 nav {
+    position: relative;
     width: 100%;
     padding: 20px;
     background-color: white;
+}
+
+@media (min-width: 601px) {
+    nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
 }
 
 nav > ul {
@@ -85,16 +105,13 @@ nav li {
     margin: 0;
 }
 
-nav {
-    position: relative;
-}
-
 .nav-logo {
     position: absolute;
     left: 20px;
     top: 50%;
     transform: translateY(-50%);
-    height: 50px;   
+    display: block;
+    height: 50px;
     width: auto;
 }
 
@@ -187,6 +204,7 @@ h3 {
 
 p {
     margin-bottom: 16px;
+    overflow-wrap: anywhere;
 }
 
 /* INTRO */
@@ -215,6 +233,8 @@ p {
 }
 
 .lab-card {
+    position: relative;
+    isolation: isolate;
     display: flex;
     min-height: 180px;
     padding: 20px;
@@ -229,7 +249,17 @@ p {
     font-weight: bold;
     text-align: center;
     text-decoration: none;
+    overflow-wrap: anywhere;
     transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.lab-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    border-radius: 15px;
+    z-index: -1;
 }
 
 .lab-card:hover,
@@ -263,20 +293,19 @@ p {
 }
 
 .lasers-card {
-    background-image: url("../media/laser-beams.jpeg") ;
+    background-image: url("../media/laser-beams.jpeg");
 }
 
 .faculty-card {
-    background-image: url("../media/logo.jpg") ;
+    background-image: url("../media/logo.jpg");
 }
-
-
 
 /* CALENDAR */
 
 .calendar {
     display: block;
     width: 100%;
+    max-width: 100%;
     height: 650px;
     border: 0;
     background-color: var(--white);
@@ -321,12 +350,19 @@ footer {
         gap: 20px;
     }
 
+    .nav-logo {
+        position: static;
+        transform: none;
+        height: 40px;
+        margin: 0 auto 10px;
+    }
+
     .hero-image {
         height: 280px;
     }
 
     .hero-title h1 {
-        font-size: 2.5rem;
+        letter-spacing: 0.05em;
     }
 
     section,

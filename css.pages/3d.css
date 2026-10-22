@@ -5,12 +5,19 @@
     --white: #ffffff;
     --accent: purple;
     --content-width: 900px;
-    --aside-width: clamp(260px, 30vw, 380px); 
+    --aside-width: clamp(260px, 30vw, 380px);
+}
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+img,
+video {
+    max-width: 100%;
+    height: auto;
 }
 
 body {
@@ -35,6 +42,15 @@ body {
     object-fit: cover;
 }
 
+/* Dark overlay so the title passes contrast */
+.hero-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 1;
+}
+
 .hero-title {
     position: absolute;
     top: 0;
@@ -49,10 +65,12 @@ body {
 
 .hero-title h1 {
     margin: 0;
+    padding: 0 16px;
     color: var(--accent);
-    font-size: 5rem;
+    font-size: clamp(2rem, 10vw, 5rem);
     letter-spacing: 0.1em;
     text-align: center;
+    overflow-wrap: anywhere;
 }
 
 /* NAVIGATION */
@@ -62,6 +80,15 @@ nav {
     width: 100%;
     padding: 20px;
     background-color: white;
+}
+
+@media (min-width: 601px) {
+    nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
 }
 
 nav > ul {
@@ -94,7 +121,7 @@ nav li {
     top: 50%;
     transform: translateY(-50%);
     display: block;
-    height: 50px;  
+    height: 50px;
     width: auto;
 }
 
@@ -177,7 +204,7 @@ h3 {
 
 p {
     margin-bottom: 16px;
-    overflow-wrap: anywhere; 
+    overflow-wrap: anywhere;
 }
 
 section ul,
@@ -213,7 +240,7 @@ section[aria-labelledby="3d-heading"] {
 section[aria-labelledby="3d-heading"] > img {
     float: left;
     width: min(300px, 30%);
-    margin: 0 56px 20px 0;   
+    margin: 0 56px 20px 0;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
@@ -249,7 +276,7 @@ header > aside ul {
     margin: 0 0 0 20px;
 }
 
-@media (min-width: 600px) {
+@media (min-width: 601px) {
     header > aside {
         float: right;
         width: var(--aside-width);
@@ -282,16 +309,7 @@ footer {
     color: white;
 }
 
-/* SCREEN SIZE */
-
-@media (max-width: 600px) {
-    section[aria-labelledby="3d-heading"] > img {
-        float: none;
-        width: 100%;
-        margin: 0 0 24px;
-    }
-}
-
+/* SCREEN SIZE (phones) */
 
 @media (max-width: 600px) {
     nav > ul {
@@ -311,7 +329,7 @@ footer {
     }
 
     .hero-title h1 {
-        font-size: 2.5rem;
+        letter-spacing: 0.05em;
     }
 
     section,
@@ -319,8 +337,13 @@ footer {
         padding: 40px 20px;
     }
 
+    section[aria-labelledby="3d-heading"] > img {
+        float: none;
+        width: 100%;
+        margin: 0 0 24px;
+    }
+
     header > aside {
         margin: 20px;
     }
-}
 }

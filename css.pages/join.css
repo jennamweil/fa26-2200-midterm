@@ -55,9 +55,19 @@ body {
 /* NAVIGATION */
 
 nav {
+    position: relative;
     width: 100%;
     padding: 20px;
     background-color: white;
+}
+
+@media (min-width: 601px) {
+    nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
 }
 
 nav > ul {
@@ -82,10 +92,6 @@ nav a[aria-current="page"] {
 nav ul,
 nav li {
     margin: 0;
-}
-
-nav {
-    position: relative;
 }
 
 .nav-logo {
