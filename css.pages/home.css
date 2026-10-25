@@ -388,3 +388,161 @@ footer {
         height: 550px;
     }
 }
+
+
+
+/* BTU LAB INFORMATION */
+
+.lab-info {
+    padding: 70px 5%;
+    background-color: #f5f5f5;
+}
+
+.lab-info h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+.info-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.info-card {
+    flex: 1 1 280px;
+    padding: 30px;
+    background-color: white;
+    border: 3px solid #222;
+    border-radius: 18px;
+    margin-top: 0;
+}
+
+.info-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+
+.info-card p {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 15px;
+}
+
+.info-note {
+    color: #555;
+    font-size: 0.9rem;
+}
+
+/* LOCATION AND CONTACT */
+
+.location-section {
+    padding: 70px 5%;
+    background-color: #f5f5f5;
+}
+
+.location-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+.location-grid {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.location-card {
+    flex: 1 1 280px;
+    padding: 30px;
+    background-color: white;
+    border: 3px solid #222;
+    border-radius: 18px;
+}
+
+.location-card h3 {
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.location-card p,
+.location-card address {
+    font-size: 1rem;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.location-card address {
+    font-style: normal;
+}
+
+.location-card a {
+    color: #0056b3;
+    font-weight: bold;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+}
+
+.location-card a:hover {
+    text-decoration: underline;
+}
+
+.location-card a:focus-visible {
+    outline: 2px solid #0056b3;
+    outline-offset: 4px;
+}
+
+/* GOOGLE MAP */
+
+.location-map {
+    width: 100%;
+    max-width: 1000px;
+    margin: 25px auto 0;
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+.location-map iframe {
+    display: block;
+    width: 100%;
+    height: 400px;
+    border: none;
+}
+
+/* MOBILE RESPONSIVENESS */
+
+@media (max-width: 600px) {
+    .lab-info,
+    .location-section {
+        padding: 40px 20px;
+    }
+
+    .lab-info h2,
+    .location-section h2 {
+        font-size: 1.8rem;
+    }
+
+    .info-grid,
+    .location-grid {
+        flex-direction: column;
+    }
+
+    .info-card,
+    .location-card {
+        flex: 1 1 auto;
+        width: 100%;
+    }
+
+    .location-map iframe {
+        height: 300px;
+    }
+}
