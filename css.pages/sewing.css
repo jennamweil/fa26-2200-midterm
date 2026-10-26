@@ -1,7 +1,9 @@
+/* BTU Lab | Sewing & Textiles */
+
 :root {
     --grey: #e6e6e6;
     --white: #ffffff;
-    --accent: #f2c200;          
+    --accent: #f2c200;
     --content-width: 900px;
 }
 
@@ -64,6 +66,7 @@ body {
 /* NAVIGATION */
 
 nav {
+    position: relative;
     width: 100%;
     padding: 20px;
     background-color: white;
@@ -97,12 +100,18 @@ nav a[aria-current="page"] {
     text-decoration: underline;
 }
 
+nav ul,
+nav li {
+    margin: 0;
+}
+
 .nav-logo {
     position: absolute;
     left: 20px;
     top: 50%;
     transform: translateY(-50%);
-    height: 50px;  
+    display: block;
+    height: 50px;
     width: auto;
 }
 
@@ -154,11 +163,13 @@ main {
 
 /* SECTIONS */
 
-section {
+section,
+aside {
     padding: 60px max(30px, calc((100% - var(--content-width)) / 2));
 }
 
-header > section {
+header > section,
+header > aside {
     background-color: var(--white);
 }
 
@@ -185,23 +196,30 @@ h3 {
 
 p {
     margin-bottom: 16px;
+    overflow-wrap: anywhere;
 }
 
 section ul,
-section ol {
+section ol,
+aside ul,
+aside ol {
+    width: auto;
+    margin: 0 0 16px;
+    padding-left: 25px;
+}
+
+/* BULLET POINTS */
+.bullets-4 {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(4, auto);
+    column-gap: 50px;
     width: fit-content;
     max-width: 100%;
-    margin: 0 auto 16px;
-    padding-left: 25px;
 }
 
 li {
     margin-bottom: 8px;
-}
-
-nav ul,
-nav li {
-    margin: 0;
 }
 
 section a,
@@ -215,47 +233,7 @@ aside a:hover {
     text-decoration: none;
 }
 
-/* ASIDE */
-header > aside {
-    width: auto;
-    max-width: 500px;
-    margin: 30px auto;
-    padding: 25px;
-    background-color: var(--white);
-    border: 3px solid var(--accent);
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-header > aside h2 {
-    font-size: 1.3rem;
-}
-
-header > aside ul {
-    margin: 0 0 0 20px;
-}
-
-/* SCREENS */
-
-@media (min-width: 700px) {
-    header > aside {
-        float: right;
-        width: clamp(260px, 30vw, 380px);
-        max-width: none;
-        margin: 30px 30px 30px 20px;
-    }
-
-    header > aside + section {
-        min-height: 600px;
-        padding-left: 40px;
-        padding-right: calc(clamp(260px, 30vw, 380px) + 70px);
-        display: block;   /* cancels the old vertical centering */
-    }
-
-    header > aside + section h2 {
-        text-align: left;
-    }
-}
+/* IMAGE ABOVE THE WRITING */
 
 .sew img {
     display: block;
@@ -285,6 +263,13 @@ footer {
         gap: 20px;
     }
 
+    .nav-logo {
+        position: static;
+        transform: none;
+        height: 40px;
+        margin: 0 auto 10px;
+    }
+
     .hero-image {
         height: 280px;
     }
@@ -293,11 +278,12 @@ footer {
         font-size: 2.5rem;
     }
 
-    section {
+    section,
+    aside {
         padding: 40px 20px;
     }
 
-    header > aside {
-        margin: 20px;
+    .bullets-4 {
+        display: block;
     }
 }

@@ -5,7 +5,6 @@
     --white: #ffffff;
     --accent: purple;
     --content-width: 900px;
-    --aside-width: clamp(260px, 30vw, 380px);
 }
 
 * {
@@ -173,11 +172,13 @@ main {
 
 /* SECTIONS */
 
-section {
+section,
+aside {
     padding: 60px max(30px, calc((100% - var(--content-width)) / 2));
 }
 
-header > section {
+header > section,
+header > aside {
     background-color: var(--white);
 }
 
@@ -208,15 +209,32 @@ p {
 }
 
 section ul,
-section ol {
+section ol,
+aside ul,
+aside ol {
+    width: auto;
+    margin: 0 0 16px;
+    padding-left: 25px;
+}
+
+/* BULLET POINTS */
+.bullets-4 {
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(4, auto);
+    column-gap: 50px;
     width: fit-content;
     max-width: 100%;
-    margin: 0 auto 16px;
-    padding-left: 25px;
 }
 
 li {
     margin-bottom: 8px;
+}
+
+@media (max-width: 600px) {
+    .bullets-4 {
+        display: block;
+    }
 }
 
 section a,
@@ -255,50 +273,6 @@ section[aria-labelledby="3d-heading"]::after {
     clear: left;
 }
 
-/* ASIDE SIZES */
-
-header > aside {
-    width: auto;
-    max-width: 500px;
-    margin: 30px auto;
-    padding: 25px;
-    background-color: var(--white);
-    border: 2px solid var(--accent);
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-header > aside h2 {
-    font-size: 1.3rem;
-}
-
-header > aside ul {
-    margin: 0 0 0 20px;
-}
-
-@media (min-width: 601px) {
-    header > aside {
-        float: right;
-        width: var(--aside-width);
-        max-width: none;
-        margin: 30px 30px 30px 20px;
-        position: relative;
-        z-index: 2;
-    }
-
-    header > aside + section {
-        min-height: 560px;
-        padding-left: 40px;
-        padding-right: calc(var(--aside-width) + 60px);
-    }
-}
-
-@media (min-width: 1300px) {
-    header > aside + section {
-        padding-left: calc(var(--aside-width) + 60px);
-    }
-}
-
 /* FOOTER */
 
 footer {
@@ -333,6 +307,7 @@ footer {
     }
 
     section,
+    aside,
     section[aria-labelledby="3d-heading"] {
         padding: 40px 20px;
     }
@@ -341,9 +316,5 @@ footer {
         float: none;
         width: 100%;
         margin: 0 0 24px;
-    }
-
-    header > aside {
-        margin: 20px;
     }
 }
