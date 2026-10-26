@@ -41,12 +41,13 @@ body {
     object-fit: cover;
 }
 
-/* Dark overlay so the title passes contrast */
 .hero-image::after {
     content: "";
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.55);
+    background: radial-gradient(ellipse at center,
+                rgba(0, 0, 0, 0.8) 0%,
+                rgba(0, 0, 0, 0.45) 70%);
     z-index: 1;
 }
 
@@ -65,7 +66,7 @@ body {
 .hero-title h1 {
     margin: 0;
     padding: 0 16px;
-    color: var(--accent);
+    color: #e3b8ff;
     font-size: clamp(2rem, 10vw, 5rem);
     letter-spacing: 0.1em;
     text-align: center;
