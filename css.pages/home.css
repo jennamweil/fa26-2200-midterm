@@ -452,7 +452,7 @@ footer {
     margin-bottom: 40px;
 }
 
-/* TWO VERTICAL CARDS SIDE BY SIDE */
+/* TWO CARDS */
 
 .location-grid {
     display: grid;
@@ -478,7 +478,6 @@ footer {
     margin-bottom: 25px;
 }
 
-/* ADDRESS AND MAP NEXT TO EACH OTHER */
 
 .find-us-content {
     display: flex;
